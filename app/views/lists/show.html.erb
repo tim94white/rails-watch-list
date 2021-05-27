@@ -2,7 +2,22 @@
   <h1><%= @list.name %> list</h1>
 </div>
 
-<div>
-  <%= link_to "Go back", lists_path %>
-  <%= link_to "Bookmark", new_list_bookmark_path(@list) %>
+<div class="container">
+  <div class="row">
+    <div class="offset-sm-3 col-sm-6">
+      <% @list.movies.each do |movie| %>
+        <div class="bg-white rounded shadow h-100">
+          <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+          <%= movie.title %>
+          <%= bookmark.comment %>
+          <%= link_to "Remove Movie", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure you want to remove #{movie.title}" } %>
+        </div>
+      <% end  %>
+    </div>
+  </div>
+  <div >
+    <%= link_to "Go back", lists_path, class: 'btn btn-primary' %>
+    <%= link_to "Add Movie", new_list_bookmark_path(@list), class: 'btn btn-success' %>
+
+  </div>
 </div>
