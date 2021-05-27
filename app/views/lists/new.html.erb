@@ -1,0 +1,16 @@
+<div class="banner">
+  <h1>New List</h1>
+</div>
+
+<div class="container">
+  <div class="offset-sm-3 col-sm-6">
+    <%= simple_form_for(@list) do |f| %>
+      <%= f.input :name %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
+
+<div>
+  <%= link_to "Go back", lists_path %>
+</div>
