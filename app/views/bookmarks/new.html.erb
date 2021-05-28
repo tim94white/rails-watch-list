@@ -1,6 +1,10 @@
-<div class="container py-5">
-  <div class="offset-sm-3 col-sm-6">
+<div class="banner mb-4 d-flex align-items-center justify-content-center py-5">
+  <div class="text-center text-white">
     <h3>Add a movie to you <%= @list.name %> list</h3>
+  </div>
+</div>
+<div class="container py-2 mb-5">
+  <div class="offset-sm-3 col-sm-6">
     <%= simple_form_for [@list, @bookmark] do |f| %>
       <%= f.input :comment, placeholder: 'Enter a comment about the movie..' %>
       <%= f.association :movie, prompt: 'Select a movie' %>

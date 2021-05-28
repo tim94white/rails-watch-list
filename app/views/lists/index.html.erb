@@ -1,20 +1,32 @@
-<div class="banner">
-<h1>Movie Lists</h1>
+<div class="banner mb-4 d-flex align-items-center justify-content-center py-5">
+  <div class="text-center text-white">
+    <h1>Movie Lists</h1>
+    <h3 class="typed-js"></h3>
+  </div>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="class">
+      <div class="class d-flex">
         <% @lists.each do |list| %>
-          <%= link_to list.name, list %>
-        <% end %> 
+          <div class="co-12 colsm-6 col-md-4">
+            <%= link_to list_path(list), class:'text-decoration-none' do %>
+              <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('movie.jpg') %>)">
+                <%= list.name %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
 
-<div>
-  <p><%= link_to 'Create New List', new_list_path %></p>
+<div class="mb-4 d-flex align-items-center justify-content-center py-5">
+  <p><%= link_to 'Create New List', new_list_path, class: "btn btn-success" %></p>
 </div>
 
+        <%# @lists.each do |list| %>
+          <%#= link_to list.name, list %>
+        <%# end  %>

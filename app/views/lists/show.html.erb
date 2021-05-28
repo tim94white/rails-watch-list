@@ -1,23 +1,26 @@
-<div class="banner">
-  <h1><%= @list.name %> list</h1>
+<div class="banner mb-4 d-flex align-items-center justify-content-center py-5">
+  <div class="text-center text-white">
+    <h1><%= @list.name %> list</h1>
+  </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="offset-sm-3 col-sm-6">
-      <% @list.movies.each do |movie| %>
-        <div class="bg-white rounded shadow h-100">
-          <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
-          <%= movie.title %>
-          <%= bookmark.comment %>
-          <%= link_to "Remove Movie", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure you want to remove #{movie.title}" } %>
-        </div>
-      <% end  %>
+    <div class="d-flex">
+      <div class="offset-sm-3 col-sm-6">
+        <% @list.movies.each do |movie| %>
+          <div class="card-category" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('movie.jpg') %>)">
+            <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+            <%= movie.title %>
+            <%= bookmark.comment %>
+            <%= link_to "Remove Movie", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure you want to remove #{movie.title}" } %>
+          </div>
+        <% end  %>
+      </div>
     </div>
   </div>
-  <div >
+  <div class="py-5 d-flex ">
     <%= link_to "Go back", lists_path, class: 'btn btn-primary' %>
     <%= link_to "Add Movie", new_list_bookmark_path(@list), class: 'btn btn-success' %>
-
   </div>
 </div>
